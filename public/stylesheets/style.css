@@ -1,0 +1,72 @@
+#tracks li{
+  cursor:pointer;
+  list-style: none;
+}
+
+#tracks.single li{
+  list-style: decimal;
+}
+
+#albums li{
+  cursor:pointer;
+  list-style: none;
+}
+#artists li{
+  cursor:pointer;
+  list-style: none;
+}
+
+#artists .entry1 {
+  padding-top: 18px;
+}
+
+.hero-unit {
+  text-align: center;
+}
+
+.entry1 {
+  padding-top: 8px;
+  font-size: 1.2em;
+}
+
+.entry2 {
+  font-style: italic;
+}
+
+#tracks h2 {
+  margin-left: 27px;
+}
+
+#artists h2 {
+  padding-left: 23px;
+}
+
+#albums h2 {
+  padding-left: 23px;
+}
+
+.search {
+  text-align: center;
+}
+
+h1 a {
+  color: white;
+}
+
+h1 a:hover {
+  text-decoration: none;
+}
+
+.link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link {
+  color: #e8d069;
+  display: inline-block;
+}
+
+.blueBack {
+  background-color: #043D5D;
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Remote</title>
+		<script src="./jq.js"></script>
+		<link href="./stylesheets/bootstrap.css" rel="stylesheet">
+		<link href="./stylesheets/style.css" rel="stylesheet">
+	</head>
+	<body>
+	<div id="container-fluid">
+		<div class="hero-unit navbar-inner">
+			<h1><a href="/" id = "top">Type a song</a></h1>
+		</div>
+		<div class="container">
+			<div class="row search">
+				<div class="span4 offset4">
+					<input class="form-inline form-search" placeholder="search" type="search" id="searchbox"><br>
+					<!-- <br> -->
+					<!-- <a href="/queue">Now Playing</a> or -->
+					
+					<p class="btn" id="voldown">Vol Dec</p>
+					<p class="btn" id="volup">Vol Inc</p><br><br>
+					<p class="btn" id="kill">Kill Now</p>
+					<p class="btn" id="killLater">Kill in 30</p>
+					<br><br><br>
+					<!-- <p class="mp link">Most Played</p> -->
+				</div>
+			</div>
+			<div class="row data">
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var postReq = 1;
+		$("#searchbox").bind('keydown',function(e){
+			if (postReq == 1)
+			{
+				if(e.keyCode===13)
+				{
+			        postReq = 0;
+			        var q = $('#searchbox').val();
+			        // var q = 'rap god';
+			        console.log(q);
+			        $.ajax({
+			        type: "POST",
+			        url: "/play",
+			        data: { q: q }
+			      })
+			        .done(function( msg ) {
+			          console.log(msg);
+			          $("#top").html(msg);
+			          postReq = 1;
+			      })
+				}
+			}
+		})
+
+		$('#kill').click(function(){
+			$.ajax({
+		        type: "POST",
+		        url: "/kill",
+		        data: {}
+		      })
+		        .done(function( msg ) {
+		          console.log(msg);
+		      })
+		})
+		var volCHange = 1;
+		$('#volup').click(function(){
+			if(volCHange = 1){
+				volCHange = 0;
+				$.ajax({
+			        type: "POST",
+			        url: "/volup",
+			        data: {}
+			      })
+			        .done(function( msg ) {
+			          console.log(msg);
+			          volCHange = 1;
+			      })
+			}
+		})
+		$('#voldown').click(function(){
+			if(volCHange = 1){
+				volCHange = 0;
+				$.ajax({
+			        type: "POST",
+			        url: "/voldown",
+			        data: {}
+			      })
+			        .done(function( msg ) {
+			          console.log(msg);
+			          volCHange = 1;
+			      })
+			}
+		})
+		var killLaterCheck = 1;
+		$('#killLater').click(function(){
+			// console.log("Killing seq initiated");
+			if(killLaterCheck==1)
+			{
+				killLaterCheck = 0;
+				$.ajax({
+			        type: "POST",
+			        url: "/killAfter",
+			        data: {t:30}
+			      })
+			        .done(function( msg ) {
+			          console.log(msg);
+			          killLaterCheck = 1;
+			      })
+			}
+		})
+		// $('#voldown').click(function(){
+		// 	$.ajax({
+		//         type: "POST",
+		//         url: "/voldown",
+		//         data: {}
+		//       })
+		//         .done(function( msg ) {
+		//           console.log(msg);
+		//       })
+		// })
+  </script>
+	</body>
+</html>

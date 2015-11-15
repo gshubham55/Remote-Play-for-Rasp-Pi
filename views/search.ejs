@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>MusicByter</title>
+  <script src="jq.js"></script>
+</head>
+<body align="center">
+  <p>whoa bitch</p>
+  <% cont.items.forEach(function (item) { %>
+      <p vLink = "http://www.youtube.com/watch?v=<%= item.id.videoId %>" class="clickMe"><%= item.snippet.title %></p><br>
+  <% }); %>
+  <script type="text/javascript">
+
+    $(".clickMe").click(function(){
+        var linkYT = $(this).attr("vLink");
+        // console.log(tmp);
+        $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/download",
+        data: { linkYT: linkYT }
+      })
+        .done(function( msg ) {
+          console.log(msg);
+      })
+    })
+  </script>
+</body>
+</html>
